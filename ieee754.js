@@ -248,7 +248,7 @@ function calculateFormula(s, frac, exp, bias) {
     var x = One * pow2;
 
 
-    var power = bias - exp;
+    var power = expAdj;
     var expression = "";
     expression += One;
     expression += " * ";
