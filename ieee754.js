@@ -1,3 +1,9 @@
+/*
+Albin Vinoy
+CPSC 440
+
+*/
+
 var bias = {
     single: 127,
     double: 1023
@@ -82,10 +88,9 @@ function decimalToSinglePrecision(number) {
 
     var MANTISSA = wholePBinary.substr(index + 1, 23).padEnd(23, "0");
 
-    document.getElementById("output").innerHTML = "Sign : " +sign + "<p>Exponent : " + EXPO + "</p>" + "<p>Mantissa : " + MANTISSA;
+    document.getElementById("output").innerHTML = "Sign (1 bit) : " +sign + "<p>Exponent (8 bits) : " + EXPO + "</p>" + "<p>Mantissa (52 bits) : " + MANTISSA;
 
-    }
-
+}
 
 
 function decimalToDoublePrecision(number) {
@@ -94,7 +99,7 @@ function decimalToDoublePrecision(number) {
     Step 1 : get the sign value
     ==========================================*/
     // check the sign
-    var sign = (number <0) ? 1 :0
+    var sign = (number < 0) ? 1 :0
     if(sign == 1){
         number = Math.abs(number);
     }
@@ -104,21 +109,29 @@ function decimalToDoublePrecision(number) {
     ======================================================================*/
 
     // parse the whole number first
-    var wholeNum = parseInt(number);
-
+    var wholeNumber = parseInt(number);
+    var wholeNum = wholeNumber;
+    var wholeNumBin = "";
+    while(1){
+    	if(wholeNum == 0){break;}
+    	wholeNumBin += wholeNum % 2;
+    	wholeNum = parseInt(wholeNum / 2);
+    }
+    // read it reverse
+    wholeNumBin = wholeNumBin.split("").reverse().join("");
 
     // parse out the decimal value
-    var decimalNum = +(number - wholeNum).toFixed(decLen);
+    var decplaces = 0;
     // var decimalNum = +(number.toString().split(".")[1]);
 
     // length of decimal
-    var decLen = (decimalNum.toString()).length;
-
-    // decLen < 5 ? 10 : decLen;
-
-    // convert the whole number to binary
-    var wholeNumBin = wholeNum.toString(2);
-
+    var decLen = (number.toString()).length;
+    if(number.toString().indexOf('.') > -1){
+    	//found
+    	decplaces = number.toString().split('.')[1].length;
+    }
+   
+   	var decimalNum = +(parseFloat(number)- parseInt(number)).toFixed(decplaces); 
 
     /*=====================================================================
     Step 3 : Take the decimal number and mul it by 2 for 23 times
@@ -127,11 +140,11 @@ function decimalToDoublePrecision(number) {
 
     var counter = 0;
     var stringBin = "";
-        var x = decimalNum;
+    var x = decimalNum;
 
     while(1){
-        if (counter > 52) {break;}
-        if(x % 10 == 0) {(x).toFixed(decLen);}
+        if (counter > 51) {break;}
+        // if(x % 10 == 0) {(x).toFixed(decLen);}
         // multiply the number by 2
         x = x * 2;
 
@@ -174,7 +187,7 @@ function decimalToDoublePrecision(number) {
 
     var MANTISSA = wholePBinary.substr(index + 1, 52).padEnd(52, "0");
 
-    document.getElementById("output").innerHTML = "Sign : " +sign + "<p>Exponent : " + EXPO + "</p>" + "<p>Mantissa : " + MANTISSA;
+    document.getElementById("output").innerHTML = "Sign (1 bit) : " +sign + "<p>Exponent (11 bits) : " + EXPO + "</p>" + "<p>Mantissa (52 bits) : " + MANTISSA;
 
 }
 
@@ -237,7 +250,7 @@ function calculateFormula(s, frac, exp, bias) {
 
     var power = bias - exp;
     var expression = "";
-    expression += Math.pow(-1, s) * (1 + frac);
+    expression += One;
     expression += " * ";
     expression += "2" + "<sup>" + power + "</sup>";
     return [x, expression];
