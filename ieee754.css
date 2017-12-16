@@ -1,0 +1,11 @@
+input[type="radio"] {
+    padding-bottom: 2px;
+}
+/*
+label:hover{
+    display: block;
+}*/
+
+input[id="input"]{
+    align-content: center;
+}

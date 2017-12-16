@@ -1,0 +1,54 @@
+<html>
+<header>
+    This is the IEEE 754 calculator. This program calculates decimal to single and double percision Floating point.
+</header>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="ieee754.css">
+
+</head>
+
+<body>
+    <p id="error"></p>
+    <div id="radiobutton">
+        <form id="selectConversion">
+            <fieldset class="convertorSelection">
+                <p>Please select a conversion you would like to make</p>
+                <input type="radio" name="convert" id="DTSP" value="DTSP" required>
+                <label for="DTSP">Decimal to Single Precision</label> 
+                <br></br>
+                <input type="radio" name="convert" id="DTDP" value="DTDP">
+                <label for="DTDP">Decimal to Double Precision</label> 
+                
+                <br></br>
+                <input type="radio" name="convert" id="SPTD" value="SPTD">
+                <label for="SPTD">Single Precision to Decimal</label> 
+                
+                <br></br>
+                <input type="radio" name="convert" id="DPTD" value="DPTD">
+                <label for="DPTD">Double Precision to Decimal</label> 
+                
+                <br></br>
+            </fieldset>
+        </form>
+    </div>
+
+    <table>
+
+        <label for="input">Input</label>
+        <input type="text" size="70" id="input">
+        <div id="reformatInput"></div>
+
+        <div id="output"></div>
+
+    </table>
+    <div>
+        <button type="submit" onclick="getSubmitValue()">Submit</button>
+    </div>
+
+    <script type="text/javascript" src="ieee754.js"></script>
+    <p id="test">
+    </p>
+</body>
+
+</html>
